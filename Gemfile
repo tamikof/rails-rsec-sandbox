@@ -54,6 +54,12 @@ group :development, :test do
 
   # RSpec for testing
   gem "rspec-rails"
+
+  # FactoryBot for test data
+  gem 'factory_bot_rails'
+
+  # Faker for test data
+  gem 'faker'
 end
 
 group :development do
