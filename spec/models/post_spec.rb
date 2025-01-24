@@ -43,4 +43,21 @@ RSpec.describe Post, type: :model do
       expect(FactoryBot.build(:post, :general, :archived).admin_draft?).to be false
     end
   end
+
+  describe "scope" do
+    describe ".admin_draft" do
+      before do
+        # 必ず条件に一致するデータを作成する
+        FactoryBot.create_list(:post, 3, :admin, :draft)
+        # 条件に一致しないデータを作成する
+        # 全パターンを網羅的に作成してもいいが、ランダムデータの作成でまかせてしまうのもあり
+        # このくらいのデータ量なら網羅的にパターンを作成してもいい
+        FactoryBot.create_list(:post, 10)
+      end
+
+      it "管理者かつ下書きの投稿だけを取得できること" do
+        expect(Post.admin_draft).to be_all(&:admin_draft?)
+      end
+    end
+  end
 end
