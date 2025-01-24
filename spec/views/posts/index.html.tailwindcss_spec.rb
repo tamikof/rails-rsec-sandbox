@@ -6,14 +6,14 @@ RSpec.describe "posts/index", type: :view do
       Post.create!(
         title: "Title",
         body: "MyText",
-        tag: "",
+        tag: { "key"=>"value" },
         status: "Status",
         is_admin: false
       ),
       Post.create!(
         title: "Title",
         body: "MyText",
-        tag: "",
+        tag:  { "key"=>"value" },
         status: "Status",
         is_admin: false
       )
@@ -25,8 +25,8 @@ RSpec.describe "posts/index", type: :view do
     cell_selector = 'div>p'
     assert_select cell_selector, text: Regexp.new("Title".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("MyText".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("Status".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new({ "key"=>"value" }.to_s), count: 2
     assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
   end
 end
