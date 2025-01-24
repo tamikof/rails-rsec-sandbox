@@ -3,7 +3,7 @@ FactoryBot.define do
     title { "MyString" }
     body { "MyText" }
     tag { "" }
-    status { "MyString" }
+    status { "draft" }
     is_admin { false }
   end
 end
