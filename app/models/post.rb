@@ -6,4 +6,10 @@ class Post < ApplicationRecord
 
   enum :status, { draft: "draft", published: "published", archived: "archived" }
   enum :is_admin, { admin: true, general: false }
+
+  scope :admin_draft, -> { admin.draft }
+
+  def admin_draft?
+    admin? && draft?
+  end
 end
