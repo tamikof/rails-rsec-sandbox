@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :post do
-    title { "MyString" }
-    body { "MyText" }
+    title { Faker::Lorem.sentence }
+    body { Faker::Lorem.paragraph }
     tag { "" }
-    status { "draft" }
-    is_admin { false }
+    status { Post.statuses.values.sample }
+    is_admin { Post.is_admins.values.sample }
   end
 end
