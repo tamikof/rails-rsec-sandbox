@@ -68,12 +68,12 @@ RSpec.describe "/posts", type: :request do
   end
 
   describe "PATCH /update" do
-    context "with valid parameters" do
+    context "下書きかつ正常系" do
       let(:new_attributes) {
         { title: 'update', body: 'update body' }
       }
 
-      let!(:post) { FactoryBot.create(:post) }
+      let!(:post) { FactoryBot.create(:post, :draft) }
 
       it "Postを更新すること" do
         patch post_url(post), params: { post: new_attributes }
@@ -88,13 +88,33 @@ RSpec.describe "/posts", type: :request do
       end
     end
 
-    context "バリデーションエラー発生" do
-      let!(:post) { FactoryBot.create(:post) }
+    context "下書きだけどバリデーションエラー発生" do
+      let!(:post) { FactoryBot.create(:post, :draft) }
       let!(:invalid_attributes) { { title: nil, body: 'body' } }
 
       it "unprocessable_entityを返すこと" do
         patch post_url(post), params: { post: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+
+    context "公開済み" do
+      let!(:post) { FactoryBot.create(:post, :published) }
+      let!(:valid_attributes) { { title: 'test', body: 'body' } }
+
+      it "not_foundを返すこと" do
+        patch post_url(post), params: { post: valid_attributes }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+
+    context "アーカイブ済み" do
+      let!(:post) { FactoryBot.create(:post, :archived) }
+      let!(:valid_attributes) { { title: 'test', body: 'body' } }
+
+      it "not_foundを返すこと" do
+        patch post_url(post), params: { post: valid_attributes }
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
