@@ -70,7 +70,7 @@ RSpec.describe "/posts", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        { title: 'update', body: 'update body' } 
+        { title: 'update', body: 'update body' }
       }
 
       let!(:post) { FactoryBot.create(:post) }
