@@ -17,4 +17,30 @@ RSpec.describe Post, type: :model do
       expect(post).not_to be_valid
     end
   end
+
+  describe "#admin_draft?" do
+    it "管理者かつ下書きの場合はtrueを返す" do
+      expect(FactoryBot.build(:post, :admin, :draft).admin_draft?).to be true
+    end
+
+    it "一般かつ下書きの場合はfalseを返す" do
+      expect(FactoryBot.build(:post, :general, :draft).admin_draft?).to be false
+    end
+
+    it "管理者かつ公開の場合はfalseを返す" do
+      expect(FactoryBot.build(:post, :admin, :published).admin_draft?).to be false
+    end
+
+    it "一般かつ公開の場合はfalseを返す" do
+      expect(FactoryBot.build(:post, :general, :published).admin_draft?).to be false
+    end
+
+    it "管理者かつアーカイブの場合はfalseを返す" do
+      expect(FactoryBot.build(:post, :admin, :archived).admin_draft?).to be false
+    end
+
+    it "一般かつアーカイブの場合はfalseを返す" do
+      expect(FactoryBot.build(:post, :general, :archived).admin_draft?).to be false
+    end
+  end
 end
