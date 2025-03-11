@@ -9,21 +9,21 @@ FactoryBot.define do
     updated_at { Time.now }
 
     initialize_with { attributes }
-  end
 
-  trait :admin do
-    role { 'admin' }
-  end
+    trait :admin do
+      role { 'admin' }
+    end
 
-  trait :sales_manager do
-    role { 'sales_manager' }
-  end
+    trait :sales_manager do
+      role { 'sales_manager' }
+    end
 
-  trait :corp_manager do
-    role { 'corp_manager' }
-  end
+    trait :corp_manager do
+      role { 'corp_manager' }
+    end
 
-  trait :sales_user do
-    role { 'sales_user' }
+    trait :sales_user do
+      role { 'sales_user' }
+    end
   end
 end
