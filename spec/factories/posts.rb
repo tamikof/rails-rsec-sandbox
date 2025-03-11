@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :post do
     title { Faker::Lorem.sentence }
-    body { Faker::Lorem.paragraph }
-    tag { "" }
+    body { Faker::Lorem.sentence}
     status { Post.statuses.values.sample }
-    is_admin { Post.is_admins.values.sample }
-
+    role { Post.roles.values.sample }
+    permission { Post.permissions.values.sample }
+  
     trait :draft do
       status { :draft }
     end
@@ -24,6 +24,18 @@ FactoryBot.define do
 
     trait :general do
       is_admin { :general }
+    end
+
+    trait :permission_hidden do
+      permission { :hidden }
+    end
+
+    trait :permission_read do
+      permission { :read }
+    end
+
+    trait :permission_write do
+      permission { :write }
     end
   end
 end
