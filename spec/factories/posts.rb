@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :post do
     title { Faker::Lorem.sentence }
-    body { Faker::Lorem.sentence}
+    body { Faker::Lorem.sentence }
     status { Post.statuses.values.sample }
     role { Post.roles.values.sample }
     permission { Post.permissions.values.sample }
-  
+
     trait :draft do
       status { :draft }
     end
