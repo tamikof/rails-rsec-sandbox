@@ -1,0 +1,9 @@
+{
+  "id": "example-uuid-3",
+  "email": "corp_manager@example.com",
+  "name": "Corp Manager User",
+  "role": "corp_manager",
+  "status": "active",
+  "created_at": "2025-02-18T01:04:50+09:00",
+  "updated_at": "2025-02-18T01:04:50+09:00"
+}
