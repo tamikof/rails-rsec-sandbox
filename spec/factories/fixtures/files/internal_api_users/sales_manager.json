@@ -1,0 +1,9 @@
+{
+  "id": "example-uuid-2",
+  "email": "sales_manager@example.com",
+  "name": "Sales Manager User",
+  "role": "sales_manager",
+  "status": "active",
+  "created_at": "2025-02-18T01:04:43+09:00",
+  "updated_at": "2025-02-18T01:04:43+09:00"
+}
